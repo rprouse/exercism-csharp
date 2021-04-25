@@ -33,39 +33,19 @@ public class BinarySearchTree : IEnumerable<int>
     }
 
     public IEnumerator<int> GetEnumerator() =>
-        new BinarySearchTreeEnumerator(this);
+        ((IEnumerable<int>)GetData()).GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() =>
-        new BinarySearchTreeEnumerator(this);
+        ((IEnumerable)GetData()).GetEnumerator();
 
-    class BinarySearchTreeEnumerator : IEnumerator, IEnumerator<int>
+    private IEnumerable<int> GetData()
     {
-        BinarySearchTree _bst;
-        List<int> _list;
-        IEnumerator<int> _enumerator;
+        foreach(var val in Left ?? Enumerable.Empty<int>())
+            yield return val;
 
-        public BinarySearchTreeEnumerator(BinarySearchTree bst)
-        {
-            _bst = bst;
-            Reset();
-        }
+        yield return Value;
 
-        public int Current => _enumerator.Current;
-
-        object IEnumerator.Current => _enumerator.Current;
-
-        public void Dispose()
-        {
-            _enumerator.Dispose();
-        }
-
-        public bool MoveNext() => _enumerator.MoveNext();
-        public void Reset()
-        {
-            _list = _bst.Left?.ToList() ?? new List<int>();
-            _list.Add(_bst.Value);
-            _list.AddRange(_bst.Right.ToArray() ?? new int[] {} );
-            _enumerator = ((IEnumerable<int>)_list).GetEnumerator();
-        }
+        foreach(var val in Right ?? Enumerable.Empty<int>())
+            yield return val;
     }
 }
