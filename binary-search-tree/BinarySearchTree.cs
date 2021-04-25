@@ -25,7 +25,7 @@ public class BinarySearchTree : IEnumerable<int>
 
     public BinarySearchTree Add(int value)
     {
-        if (value < Value)
+        if (value <= Value)
             Left = Left?.Add(value) ?? new BinarySearchTree(value);
         else
             Right = Right?.Add(value) ?? new BinarySearchTree(value);
