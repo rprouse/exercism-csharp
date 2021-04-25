@@ -3,15 +3,11 @@
   "tasks": [
     {
       "label": "build",
-      "group":{
-        "kind": "build",
-        "isDefault": true
-      },
       "command": "dotnet",
       "type": "process",
       "args": [
         "build",
-        "${fileDirname}",
+        "${workspaceFolder}/Exercism.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -28,6 +24,31 @@
       "args": [
         "test",
         "${fileDirname}",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/Exercism.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "${workspaceFolder}/Exercism.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
