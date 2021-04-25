@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,14 +9,14 @@ public class BinarySearchTree : IEnumerable<int>
         Value = value;
     }
 
-    public BinarySearchTree(IEnumerable<int> values)
+    public BinarySearchTree(IEnumerable<int> values) :
+        this(values.First())
     {
-        Value = values.First();
         foreach(var val in values.Skip(1))
             Add(val);
     }
 
-    public int Value { get; init; }
+    public int Value { get; }
 
     public BinarySearchTree Left { get; private set;}
 
