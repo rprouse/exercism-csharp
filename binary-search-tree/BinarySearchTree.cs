@@ -31,13 +31,7 @@ public class BinarySearchTree : IEnumerable<int>
         return this;
     }
 
-    public IEnumerator<int> GetEnumerator() =>
-        ((IEnumerable<int>)GetData()).GetEnumerator();
-
-    IEnumerator IEnumerable.GetEnumerator() =>
-        ((IEnumerable)GetData()).GetEnumerator();
-
-    private IEnumerable<int> GetData()
+    public IEnumerator<int> GetEnumerator()
     {
         foreach(var val in Left ?? Enumerable.Empty<int>())
             yield return val;
@@ -47,4 +41,6 @@ public class BinarySearchTree : IEnumerable<int>
         foreach(var val in Right ?? Enumerable.Empty<int>())
             yield return val;
     }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
